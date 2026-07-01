@@ -1,0 +1,59 @@
+w= float(input("Please Enter Your Weight (kg): "))
+h= float(input("Please Enter Your Height (m): "))
+#These commands ask for the input of the user to find there needed details, the float command allows for decimal inputs.
+
+
+age= int(input("Please Enter Your Age: ")) #the int command will convert the input to a integer rather than a string
+sex= input("Please Enter Your Sex (m/f)")
+
+print("How Active Are You?")
+print("a. Not Very Active (minimal exercise)")
+print("b. Active(Exercise a few times a week)")
+
+AC= input("Please Enter Activity Level (a or b)")
+#This stretch of code will ask the user about activity level and ask for an input for either option
+
+BMI= w/ (h**2)
+#This is the equation to work out BMI, height is squared by **2
+h_cm= h* 100
+if sex == "m":
+    BMR= 10*w + 6.25 * h_cm - 5 * age + 5
+elif sex== "f":
+    BMR= 10*w + 6.25* h_cm-5 * age - 161
+else:
+    BMR= None
+#the code here firstly converts the users input in meters to cm for the equation
+#It is then run through the Mifflin-St Jeor equation to calculate the Basal Metabolic Rate (BMR)
+#-by using if and else if commands to determine which equation to use
+#The equations being BMR=10w+6.25h-5a+5 for males and 10w+6.25h-5a-161 for females (https://sculptai.io/bmr-calculator)
+if AC == "a":
+    cal= BMR*1.2
+elif AC == "b":
+    cal= BMR*1.55
+else:
+    cal= None
+#The code here is the multipliers used dependent on which level of activity the user inputs.
+# i.e someone who excercices less will have a lower reccomended calorie intake
+# The == command checks that AC corresponds to either a or b
+
+if BMI < 18.5: 
+    category= "You are Classed as Underweight"
+elif BMI < 24.9:
+    category= "You are Classed as Healthy Weight"
+elif BMI < 29.9:
+    category= "You are Classed as Overweight"
+elif BMI < 39.9:
+    category= "You are Classed as Obese"
+else:
+    category= "You are classed as Severley Obese"
+#This section of code determines which Category of BMI class you are by running it through a series of if and elif commands
+#and using categorys as the variable
+
+print("     ---BMI & BMR REPORT---")
+print(f"Weight : {w:.2f}kg")
+print(f"Height : {h:.2f}m")
+print(f"BMI : {BMI:.2f}")
+print(f"Class : {category}")
+if cal:
+    print(f"Reccomended Daily Calories: {cal:.0f}kcal")
+#This final section of code will be the final report to the user giving all details and results of the calculator
